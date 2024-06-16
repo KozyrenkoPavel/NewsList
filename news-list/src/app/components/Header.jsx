@@ -1,10 +1,8 @@
-'use client';
-
-import { useState } from 'react';
+import Link from 'next/link';
 import './Header.css';
 
-function Header() {
-  const [text, setText] = useState('');
+function Header(props) {
+  const { text, setText } = props;
 
   const getInputText = (event) => {
     setText(event.target.value);
@@ -13,12 +11,15 @@ function Header() {
   const clearFilter = () => {
     setText('');
 
-    // localStorage.setItem('isActivBtn', '0');
-    // localStorage.setItem('isActivBtnBox', '1');
-    // localStorage.setItem('number', '1');
-    // setIsActivBtn(Number(localStorage.getItem('isActivBtn')));
-    // setIsActivBtnBox(Number(localStorage.getItem('isActivBtnBox')));
-    // setCurrentPage(Number(localStorage.getItem('number')));
+    const linkClearFilter = document.querySelector('.clearFilter');
+    linkClearFilter.click();
+  };
+
+  const pressingEnter = (e) => {
+    if (e.keyCode === 13) {
+      const linkSearch = document.querySelector('.linkSearch');
+      linkSearch.click();
+    }
   };
 
   return (
@@ -28,7 +29,14 @@ function Header() {
         <button className="imageButton" onClick={clearFilter}></button>
       </div>
       <div className="search">
-        <input type="text" value={text} onChange={getInputText} />
+        <input
+          type="text"
+          value={text}
+          onChange={getInputText}
+          onKeyDown={pressingEnter}
+        />
+        <Link href={'/search/' + text} className="linkSearch"></Link>
+        <Link href="/" className="clearFilter"></Link>
       </div>
     </div>
   );

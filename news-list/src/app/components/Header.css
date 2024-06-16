@@ -6,7 +6,6 @@
   margin: 18px auto;
   margin-bottom: 18px;
   padding: 18px;
-  /* text-align: center; */
 }
 
 .title {
@@ -48,4 +47,12 @@
   font-size: 17px;
   padding: 5px;
   background: url('../img/Vector\ \(Stroke\).svg') no-repeat 98% center;
+}
+
+.linkSearch {
+  display: none;
+}
+
+.clearFilter {
+  display: none;
 }

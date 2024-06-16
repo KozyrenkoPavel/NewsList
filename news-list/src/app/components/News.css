@@ -1,4 +1,4 @@
-.news {
+.newsContainer {
   width: 520px;
   padding: 12px;
   border-radius: 3px;
@@ -8,11 +8,11 @@
   margin-bottom: 40px;
 }
 
-.news:hover {
+.newsContainer:hover {
   background-color: #dcdcdc;
 }
 
-.news img {
+.newsContainer img {
   width: 200px;
   height: 100px;
 }
@@ -24,12 +24,12 @@
   line-height: 24px;
 }
 
-.news a {
+.newsContainer a {
   text-decoration: none;
   color: #0029ff;
 }
 
-.news h2 {
+.newsContainer h2 {
   size: 18px;
   line-height: 27px;
   margin-bottom: 10px;

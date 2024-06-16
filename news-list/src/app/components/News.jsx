@@ -7,7 +7,7 @@ function News(props) {
   let newDate = dateParse.getHours() + ':' + dateParse.getMinutes();
 
   return (
-    <div className="news">
+    <div className="newsContainer">
       <Link href={`${link}`} rel="noreferrer" target="_blank">
         <div className="container">
           {/* {isActivBtn ? (
@@ -16,7 +16,7 @@ function News(props) {
             false
           )} */}
 
-          <div className="containerNews">
+          <div className="news">
             <div className="authorAndDate">
               <h4 className="date">{newDate}</h4>
               <h4>{author}</h4>
