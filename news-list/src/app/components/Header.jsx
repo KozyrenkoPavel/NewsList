@@ -2,14 +2,16 @@ import Link from 'next/link';
 import './Header.css';
 
 function Header(props) {
-  const { text, setText } = props;
+  const { text, chageText, newText } = props;
 
-  const getInputText = (event) => {
-    setText(event.target.value);
+  let searchText = text;
+
+  const getInputText = (e) => {
+    chageText(e.target.value);
   };
 
   const clearFilter = () => {
-    setText('');
+    chageText('');
 
     const linkClearFilter = document.querySelector('.clearFilter');
     linkClearFilter.click();
@@ -17,8 +19,10 @@ function Header(props) {
 
   const pressingEnter = (e) => {
     if (e.keyCode === 13) {
+      searchText = newText;
       const linkSearch = document.querySelector('.linkSearch');
       linkSearch.click();
+      chageText('');
     }
   };
 
@@ -35,7 +39,10 @@ function Header(props) {
           onChange={getInputText}
           onKeyDown={pressingEnter}
         />
-        <Link href={'/search/' + text} className="linkSearch"></Link>
+        <Link
+          href={'/page/1?search=' + searchText}
+          className="linkSearch"
+        ></Link>
         <Link href="/" className="clearFilter"></Link>
       </div>
     </div>

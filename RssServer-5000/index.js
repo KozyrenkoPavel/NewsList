@@ -4,7 +4,7 @@ import RSSParser from 'rss-parser';
 
 const feedURL = 'https://lenta.ru/rss/news';
 const parser = new RSSParser();
-const PORT = 4000;
+const PORT = 5000;
 
 const parse = async (url) => {
   const articles = [];
@@ -26,7 +26,7 @@ app.get('/', async (req, res) => {
   res.send(data);
 });
 
-const server = app.listen('4000', () => {
+const server = app.listen('5000', () => {
   console.log(`Server successfully started on port ${PORT}`);
 });
 

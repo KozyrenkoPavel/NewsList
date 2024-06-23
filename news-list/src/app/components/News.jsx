@@ -1,10 +1,15 @@
 import Link from 'next/link';
-import './News.css'
+import './News.css';
 
 function News(props) {
   const { title, link, date, author, content } = props;
   const dateParse = new Date(date);
   let newDate = dateParse.getHours() + ':' + dateParse.getMinutes();
+
+  if (dateParse.getMinutes() === 0) newDate = dateParse.getHours() + ':00';
+  if (dateParse.getMinutes() < 10) {
+    newDate = dateParse.getHours() + ':0' + dateParse.getMinutes();
+  }
 
   return (
     <div className="newsContainer">

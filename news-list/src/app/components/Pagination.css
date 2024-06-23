@@ -1,0 +1,25 @@
+.pagination {
+  width: 800px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  size: 18px;
+  line-height: 20px;
+  cursor: pointer;
+  border: 1px solid #dcdcdc;
+  padding: 5px;
+  border-radius: 5px;
+  margin-bottom: 40px;
+}
+
+.linkPage {
+  width: 20px;
+  text-align: center;
+  border-radius: 20px;
+}
+
+.pageItem:hover {
+  background-color: #dcdcdc;
+}
