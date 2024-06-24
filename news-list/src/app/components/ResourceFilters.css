@@ -1,0 +1,10 @@
+.filter {
+  color: #0029ff;
+  cursor: pointer;
+  size: 14px;
+}
+
+.filter:hover {
+  background-color: #dcdcdc;
+  filter: brightness(80%);
+}

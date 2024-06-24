@@ -1,19 +1,25 @@
+import { redirect } from 'next/navigation';
 import ContainerNewsList from './components/ContainerNewsList';
 import fetchDataLenta from './utils/fetchDataLenta';
 import fetchDataMos from './utils/fetchDataMos';
 
-export default async function Home({ params }) {
+export default async function Home() {
   const newsList = await fetchDataLenta();
+  const newsListMos = await fetchDataMos();
+  const allNews = [...newsList, ...newsListMos];
 
-  // const newsListMos = await fetchDataMos();
-  // const allNews = [...newsList, ...newsListMos];
-  return (
-    <div className="containerNewsList">
-      <ContainerNewsList
-        newsList={newsList}
-        newText={undefined}
-        newNumber={undefined}
-      />
-    </div>
-  );
+  redirect('/page/1?filterParams=all');
+
+  // return (
+  //   <div className="containerNewsList">
+  //     <ContainerNewsList
+  //       newsList={newsList}
+  //       newsListMos={newsListMos}
+  //       allNews={allNews}
+  //       newText={undefined}
+  //       newNumber={undefined}
+  //       filterParams={undefined}
+  //     />
+  //   </div>
+  // );
 }

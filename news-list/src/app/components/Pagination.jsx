@@ -2,7 +2,8 @@ import Link from 'next/link';
 import './Pagination.css';
 
 function Pagination(props) {
-  const { newsPageCount, countNews, newText, newDataNews } = props;
+  const { newsPageCount, countNews, newText, filterParams, currentPage } =
+    props;
   const pageNumbers = [];
 
   let hrefPage = '';
@@ -11,20 +12,102 @@ function Pagination(props) {
     pageNumbers.push(i);
   }
 
+  const setHrefLink = (number) => {
+    hrefPage = '/page/' + number + '?filterParams=all';
+
+    if (filterParams !== 'undefined' && filterParams !== undefined) {
+      hrefPage = '/page/' + number + '?filterParams=' + filterParams;
+    }
+
+    if (newText !== 'undefined' && newText !== undefined) {
+      hrefPage =
+        '/page/' +
+        number +
+        '?filterParams=' +
+        filterParams +
+        '&search=' +
+        newText;
+    }
+  };
+
   return (
     <div className="pagination">
-      {pageNumbers.map((number) => {
-        hrefPage = '/page/' + number;
+      {pageNumbers.map((number, index) => {
+        setHrefLink(number);
 
-        if (newText !== 'undefined' && newText !== undefined) {
-          hrefPage = '/page/' + number + '?search=' + newText;
+        if (Number(currentPage) === 1 || Number(currentPage) === 2) {
+          if (index + 1 < 5) {
+            return (
+              <Link className="linkPage" href={hrefPage} key={number}>
+                {number}
+              </Link>
+            );
+          } else if (index + 1 === pageNumbers.length) {
+            return (
+              <span className="lastPage" key={number + 1}>
+                <h4>...</h4>
+                <Link className="linkPage" href={hrefPage} key={number}>
+                  {number}
+                </Link>
+              </span>
+            );
+          }
+        } else if (
+          Number(currentPage) > 2 &&
+          Number(currentPage) !== pageNumbers.length &&
+          Number(currentPage) !== pageNumbers.length - 1 &&
+          Number(currentPage) !== pageNumbers.length - 2 &&
+          Number(currentPage) !== pageNumbers.length - 3
+        ) {
+          if (
+            index + 1 === Number(currentPage) - 1 ||
+            index + 1 === Number(currentPage) - 2 ||
+            index + 1 === Number(currentPage) ||
+            index + 1 === Number(currentPage) + 1
+          ) {
+            return (
+              <Link className="linkPage" href={hrefPage} key={number}>
+                {number}
+              </Link>
+            );
+          } else if (index + 1 === pageNumbers.length) {
+            return (
+              <span className="lastPage" key={number + 1}>
+                <h4>...</h4>
+                <Link className="linkPage" href={hrefPage} key={number}>
+                  {number}
+                </Link>
+              </span>
+            );
+          }
+        } else if (
+          Number(currentPage) === pageNumbers.length ||
+          Number(currentPage) === pageNumbers.length - 1 ||
+          Number(currentPage) === pageNumbers.length - 2 ||
+          Number(currentPage) === pageNumbers.length - 3
+        ) {
+          if (index + 1 === 1) {
+            return (
+              <span className="lastPage" key={number + 1}>
+                <Link className="linkPage" href={hrefPage} key={number}>
+                  {number}
+                </Link>
+                <h4>...</h4>
+              </span>
+            );
+          } else if (
+            index + 1 === Number(currentPage) - 1 ||
+            index + 1 === Number(currentPage) - 2 ||
+            index + 1 === Number(currentPage) ||
+            index + 1 === Number(currentPage) + 1
+          ) {
+            return (
+              <Link className="linkPage" href={hrefPage} key={number}>
+                {number}
+              </Link>
+            );
+          }
         }
-
-        return (
-          <Link className="linkPage" href={hrefPage} key={number}>
-            {number}
-          </Link>
-        );
       })}
     </div>
   );

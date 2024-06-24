@@ -20,6 +20,12 @@
   border-radius: 20px;
 }
 
+.lastPage {
+  display: flex;
+  width: 40px;
+  justify-content: space-between;
+}
+
 .pageItem:hover {
   background-color: #dcdcdc;
 }

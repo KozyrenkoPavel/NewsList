@@ -2,9 +2,10 @@ import Link from 'next/link';
 import './Header.css';
 
 function Header(props) {
-  const { text, chageText, newText } = props;
+  const { text, chageText, newText, filterParams } = props;
 
   let searchText = text;
+  let filter = 'all';
 
   const getInputText = (e) => {
     chageText(e.target.value);
@@ -26,6 +27,10 @@ function Header(props) {
     }
   };
 
+  if (filterParams !== undefined && filterParams !== 'undefined') {
+    filter = filterParams;
+  }
+
   return (
     <div className="header">
       <div className="title">
@@ -40,7 +45,7 @@ function Header(props) {
           onKeyDown={pressingEnter}
         />
         <Link
-          href={'/page/1?search=' + searchText}
+          href={'/page/1?filterParams=' + filter + '&search=' + searchText}
           className="linkSearch"
         ></Link>
         <Link href="/" className="clearFilter"></Link>

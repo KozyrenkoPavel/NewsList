@@ -1,0 +1,15 @@
+.boxlBtn {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: space-between;
+}
+
+.box {
+  width: 8px;
+  height: 8px;
+  background-color: #0029ff;
+}

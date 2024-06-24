@@ -2,7 +2,7 @@ import cors from 'cors';
 import express from 'express';
 import RSSParser from 'rss-parser';
 
-const feedURL = 'https://lenta.ru/rss/news';
+const feedURL = 'https://www.mos.ru/rss';
 const parser = new RSSParser();
 const PORT = 5000;
 

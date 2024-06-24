@@ -4,6 +4,17 @@
   box-sizing: border-box;
 }
 
-container {
+.containerNewsList {
   font-family: Arial, Helvetica, sans-serif;
+  max-width: 1400px;
+  max-height: 910px;
+  margin: 0 auto;
+}
+
+.resourseFilters {
+  width: 310px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px;
 }

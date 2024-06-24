@@ -1,0 +1,13 @@
+.horizontalBtn {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.strip {
+  width: 18px;
+  height: 8px;
+  background-color: #c4c4c4;
+}

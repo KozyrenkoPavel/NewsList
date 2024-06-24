@@ -14,7 +14,7 @@ function News(props) {
   return (
     <div className="newsContainer">
       <Link href={`${link}`} rel="noreferrer" target="_blank">
-        <div className="container">
+        <div className="newCard">
           {/* {isActivBtn ? (
             <img src={`${img}`} alt="img" style={styleImg} />
           ) : (

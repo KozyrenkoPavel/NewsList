@@ -4,13 +4,9 @@ import search from '../utils/search';
 import './NewsList.css';
 
 function NewsList(props) {
-  const {
-    newsList,
-    text,
-    newText,
-    firstNewsIndex,
-    lastNewsIndex,
-  } = props;
+  const { newsList, text, newText, firstNewsIndex, lastNewsIndex } = props;
+
+  let newsContent = content;
 
   let key = 0;
 
@@ -30,6 +26,10 @@ function NewsList(props) {
         .map((news) => {
           key++;
 
+          if (news.item.contentSnippet) {
+            newsContent = news.item.contentSnippet;
+          }
+
           return (
             <News
               key={key}
@@ -38,7 +38,7 @@ function NewsList(props) {
               date={news.item.pubDate}
               img={news.item.enclosure.url}
               author={news.item.author}
-              content={content}
+              content={newsContent}
             />
           );
         })}
