@@ -2,7 +2,18 @@ import Link from 'next/link';
 import './ResourceFilters.css';
 
 function ResourceFilters(props) {
-  const { text, clickResourceFilters, news } = props;
+  const { text, clickResourceFilters, news, filter } = props;
+
+  let style = {};
+
+  if (news === filter) {
+    style = { color: '#000' };
+  } else {
+    style = { color: '#0029FF' };
+  }
+
+  const hrefLinkResource =
+    news === 'all' ? '/page/1' : '/page/1?filterParams=' + news;
 
   return (
     <div
@@ -11,7 +22,9 @@ function ResourceFilters(props) {
         clickResourceFilters(news);
       }}
     >
-      <Link href={'/page/1?filterParams=' + news}>{text}</Link>
+      <Link href={hrefLinkResource} style={style}>
+        {text}
+      </Link>
     </div>
   );
 }

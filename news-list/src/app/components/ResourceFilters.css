@@ -1,10 +1,15 @@
 .filter {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16.1px;
+}
+
+.filter a {
+  text-decoration: none;
   color: #0029ff;
-  cursor: pointer;
-  size: 14px;
 }
 
 .filter:hover {
-  background-color: #dcdcdc;
-  filter: brightness(80%);
+  background-color: #fbfbfb;
+  filter: brightness(90%);
 }

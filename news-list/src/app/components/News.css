@@ -1,15 +1,14 @@
 .newsContainer {
-  width: 520px;
-  padding: 12px;
   border-radius: 3px;
   background-color: #ffffff;
   border: 1px solid #dcdcdc;
-  margin: 0 auto;
-  margin-bottom: 40px;
+  padding: 30px 30px 16px 30px;
+  margin-bottom: 20px;
+  position: 'relative';
 }
 
 .newsContainer:hover {
-  background-color: #dcdcdc;
+  background-color: color-mix(in srgb, var(--background), white 30%);
 }
 
 .newsContainer img {
@@ -18,29 +17,46 @@
 }
 
 .content {
-  word-break: break-all;
+  width: 459px;
+  height: 40px;
   color: #000;
-  size: 14px;
-  line-height: 24px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  margin-bottom: 20px;
 }
 
 .newsContainer a {
-  text-decoration: none;
+  max-width: 459px;
+  height: 20px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
   color: #0029ff;
 }
 
 .newsContainer h2 {
-  size: 18px;
-  line-height: 27px;
-  margin-bottom: 10px;
+  font-weight: 700;
+  font-size: 18px;
+  color: #0029ff;
+  margin-bottom: 25px;
 }
 
-.authorAndDate {
+.footerCard {
+  width: 100%;
+  height: 20px;
   display: flex;
-  align-items: center;
-  margin-bottom: 5px;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 16px;
+  left: 0;
+  padding: 30px 30px 16px 30px;
+  color: #dcdcdc;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
 }
 
-.date {
-  margin-right: 10px;
+.footerCard a {
+  color: #dcdcdc;
 }

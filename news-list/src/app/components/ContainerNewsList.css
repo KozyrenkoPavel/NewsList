@@ -1,0 +1,18 @@
+.containerNewsList {
+  max-width: 1060px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.display {
+  width: 46px;
+  position: absolute;
+  right: 0;
+}
+
+.displayBtn {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}

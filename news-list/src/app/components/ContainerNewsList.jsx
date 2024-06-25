@@ -8,6 +8,7 @@ import search from '../utils/search';
 import ResourceFilters from './ResourceFilters';
 import HorizontalBtn from './HorizontalBtn';
 import BoxBtn from './BoxBtn';
+import './ContainerNewsList.css';
 
 function ContainerNewsList(props) {
   const { newsList, newsListMos, allNews, newText, newNumber, filterParams } =
@@ -16,6 +17,24 @@ function ContainerNewsList(props) {
   const [currentPage, setCurrentPage] = useState(newNumber ? newNumber : 1);
   const [newsPageCount] = useState(4);
   const [filter, setFilter] = useState('all');
+
+  useEffect(() => {
+    const localStorageActivBtnBox = window.localStorage.getItem('activBtnBox');
+    const localStorageactivBtnHorizontal =
+      window.localStorage.getItem('activBtnHorizontal');
+
+    setActivBtnBox(
+      localStorageActivBtnBox ? Number(localStorageActivBtnBox) : 1
+    );
+    setactivBtnHorizontal(
+      localStorageactivBtnHorizontal
+        ? Number(localStorageactivBtnHorizontal)
+        : 0
+    );
+  }, []);
+
+  const [activBtnBox, setActivBtnBox] = useState(1);
+  const [activBtnHorizontal, setactivBtnHorizontal] = useState(0);
 
   let renderNews = allNews;
 
@@ -54,6 +73,22 @@ function ContainerNewsList(props) {
     setFilter(filter);
   };
 
+  const clickBtnBox = () => {
+    window.localStorage.setItem('activBtnHorizontal', '0');
+    window.localStorage.setItem('activBtnBox', '1');
+
+    setactivBtnHorizontal(Number(localStorage.getItem('activBtnHorizontal')));
+    setActivBtnBox(Number(localStorage.getItem('activBtnBox')));
+  };
+
+  const clickBtnHorizontal = () => {
+    window.localStorage.setItem('activBtnHorizontal', '1');
+    window.localStorage.setItem('activBtnBox', '0');
+
+    setactivBtnHorizontal(Number(localStorage.getItem('activBtnHorizontal')));
+    setActivBtnBox(Number(localStorage.getItem('activBtnBox')));
+  };
+
   useEffect(() => {
     if (newNumber !== undefined) {
       paginate(newNumber);
@@ -64,7 +99,7 @@ function ContainerNewsList(props) {
   }, []);
 
   return (
-    <>
+    <div className="containerNewsList">
       <Header
         text={text}
         chageText={chageText}
@@ -72,25 +107,33 @@ function ContainerNewsList(props) {
         filterParams={filterParams}
       />
 
+      <hr />
+
       <div className="display">
         <div className="displayBtn">
-          <HorizontalBtn />
-          <BoxBtn />
+          <HorizontalBtn
+            clickBtnHorizontal={clickBtnHorizontal}
+            activBtnHorizontal={activBtnHorizontal}
+          />
+          <BoxBtn clickBtnBox={clickBtnBox} activBtnBox={activBtnBox} />
         </div>
       </div>
 
       <div className="resourseFilters">
         <ResourceFilters
+          filter={filter}
           text="Все"
           clickResourceFilters={clickResourceFilters}
           news="all"
         />
         <ResourceFilters
+          filter={filter}
           text="Lenta.ru"
           clickResourceFilters={clickResourceFilters}
           news="Lenta.ru"
         />
         <ResourceFilters
+          filter={filter}
           text="Mos.ru"
           clickResourceFilters={clickResourceFilters}
           news="Mos.ru"
@@ -103,6 +146,7 @@ function ContainerNewsList(props) {
         firstNewsIndex={firstNewsIndex}
         lastNewsIndex={lastNewsIndex}
         newDataNews={newDataNews}
+        activBtnHorizontal={activBtnHorizontal}
       />
       <Pagination
         newsPageCount={newsPageCount}
@@ -111,7 +155,7 @@ function ContainerNewsList(props) {
         filterParams={filterParams}
         currentPage={currentPage}
       />
-    </>
+    </div>
   );
 }
 

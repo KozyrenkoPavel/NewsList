@@ -1,10 +1,25 @@
 import './HorizontalBtn.css';
 
-function HorizontalBtn() {
+function HorizontalBtn(props) {
+  const { clickBtnHorizontal, activBtnHorizontal } = props;
+
+  let style = {};
+
+  if (activBtnHorizontal) {
+    style = { backgroundColor: '#0029FF' };
+  } else {
+    style = { backgroundColor: '#c4c4c4' };
+  }
+
   return (
-    <div className="horizontalBtn">
-      <div className="strip"></div>
-      <div className="strip"></div>
+    <div
+      className="horizontalBtn"
+      onClick={() => {
+        clickBtnHorizontal();
+      }}
+    >
+      <div className="strip" style={style}></div>
+      <div className="strip" style={style}></div>
     </div>
   );
 }

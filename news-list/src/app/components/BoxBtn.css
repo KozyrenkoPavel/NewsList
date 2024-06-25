@@ -1,4 +1,4 @@
-.boxlBtn {
+.boxBtn {
   width: 18px;
   height: 18px;
   display: flex;
@@ -12,4 +12,10 @@
   width: 8px;
   height: 8px;
   background-color: #0029ff;
+}
+
+.boxBtn:hover div {
+  background-color: #fbfbfb;
+  filter: brightness(90%);
+  cursor: pointer;
 }

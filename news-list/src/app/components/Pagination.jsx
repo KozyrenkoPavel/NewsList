@@ -13,9 +13,13 @@ function Pagination(props) {
   }
 
   const setHrefLink = (number) => {
-    hrefPage = '/page/' + number + '?filterParams=all';
+    hrefPage = '/page/' + number;
 
-    if (filterParams !== 'undefined' && filterParams !== undefined) {
+    if (
+      filterParams !== 'undefined' &&
+      filterParams !== undefined &&
+      filterParams !== 'all'
+    ) {
       hrefPage = '/page/' + number + '?filterParams=' + filterParams;
     }
 

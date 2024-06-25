@@ -11,3 +11,9 @@
   height: 8px;
   background-color: #c4c4c4;
 }
+
+.horizontalBtn:hover div {
+  background-color: #fbfbfb;
+  filter: brightness(90%);
+  cursor: pointer;
+}

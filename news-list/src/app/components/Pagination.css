@@ -1,31 +1,32 @@
 .pagination {
-  width: 800px;
+  max-width: 186px;
+  height: 21px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   margin: 0 auto;
-  size: 18px;
-  line-height: 20px;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 20.7px;
   cursor: pointer;
-  border: 1px solid #dcdcdc;
-  padding: 5px;
-  border-radius: 5px;
-  margin-bottom: 40px;
 }
 
 .linkPage {
   width: 20px;
   text-align: center;
   border-radius: 20px;
+  color: black;
+  text-decoration: none;
 }
 
 .lastPage {
   display: flex;
-  width: 40px;
+  width: 50px;
   justify-content: space-between;
 }
 
-.pageItem:hover {
-  background-color: #dcdcdc;
+.linkPage:hover {
+  background-color: #fbfbfb;
+  filter: brightness(90%);
 }

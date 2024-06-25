@@ -4,7 +4,14 @@ import search from '../utils/search';
 import './NewsList.css';
 
 function NewsList(props) {
-  const { newsList, text, newText, firstNewsIndex, lastNewsIndex } = props;
+  const {
+    newsList,
+    text,
+    newText,
+    firstNewsIndex,
+    lastNewsIndex,
+    activBtnHorizontal,
+  } = props;
 
   let newsContent = content;
 
@@ -37,8 +44,8 @@ function NewsList(props) {
               link={news.item.link}
               date={news.item.pubDate}
               img={news.item.enclosure.url}
-              author={news.item.author}
               content={newsContent}
+              activBtnHorizontal={activBtnHorizontal}
             />
           );
         })}

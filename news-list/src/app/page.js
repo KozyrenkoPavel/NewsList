@@ -4,11 +4,11 @@ import fetchDataLenta from './utils/fetchDataLenta';
 import fetchDataMos from './utils/fetchDataMos';
 
 export default async function Home() {
-  const newsList = await fetchDataLenta();
-  const newsListMos = await fetchDataMos();
-  const allNews = [...newsList, ...newsListMos];
+  // const newsList = await fetchDataLenta();
+  // const newsListMos = await fetchDataMos();
+  // const allNews = [...newsList, ...newsListMos];
 
-  redirect('/page/1?filterParams=all');
+  redirect('/page/1');
 
   // return (
   //   <div className="containerNewsList">
