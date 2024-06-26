@@ -11,22 +11,14 @@ import BoxBtn from './BoxBtn';
 import './ContainerNewsList.css';
 
 function ContainerNewsList(props) {
-  const localStorageActivBtnBox = localStorage.getItem('activBtnBox');
-  const localStorageactivBtnHorizontal =
-    localStorage.getItem('activBtnHorizontal');
-
   const { newsList, newsListMos, allNews, newText, newNumber, filterParams } =
     props;
   const [text, setText] = useState('');
   const [currentPage, setCurrentPage] = useState(newNumber ? newNumber : 1);
   const [newsPageCount] = useState(4);
   const [filter, setFilter] = useState('all');
-  const [activBtnBox, setActivBtnBox] = useState(
-    localStorageActivBtnBox ? Number(localStorageActivBtnBox) : 1
-  );
-  const [activBtnHorizontal, setactivBtnHorizontal] = useState(
-    localStorageactivBtnHorizontal ? Number(localStorageactivBtnHorizontal) : 0
-  );
+  const [activBtnBox, setActivBtnBox] = useState(0);
+  const [activBtnHorizontal, setactivBtnHorizontal] = useState(0);
 
   let renderNews = allNews;
 
@@ -82,10 +74,22 @@ function ContainerNewsList(props) {
   };
 
   useEffect(() => {
+    const localStorageActivBtnBox = localStorage.getItem('activBtnBox');
+
+    if (localStorageActivBtnBox && Number(localStorageActivBtnBox)) {
+      setActivBtnBox(1);
+    } else {
+      setactivBtnHorizontal(1);
+    }
+
     if (filterParams !== undefined) {
       setFilter(filterParams);
     }
   }, []);
+
+  if (!activBtnHorizontal && !activBtnBox) {
+    return <h1>Loading...</h1>;
+  }
 
   return (
     <div className="containerNewsList">
