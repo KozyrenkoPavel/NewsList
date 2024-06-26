@@ -11,14 +11,22 @@ import BoxBtn from './BoxBtn';
 import './ContainerNewsList.css';
 
 function ContainerNewsList(props) {
+  const localStorageActivBtnBox = localStorage.getItem('activBtnBox');
+  const localStorageactivBtnHorizontal =
+    localStorage.getItem('activBtnHorizontal');
+
   const { newsList, newsListMos, allNews, newText, newNumber, filterParams } =
     props;
   const [text, setText] = useState('');
   const [currentPage, setCurrentPage] = useState(newNumber ? newNumber : 1);
   const [newsPageCount] = useState(4);
   const [filter, setFilter] = useState('all');
-  const [activBtnBox, setActivBtnBox] = useState(1);
-  const [activBtnHorizontal, setactivBtnHorizontal] = useState(0);
+  const [activBtnBox, setActivBtnBox] = useState(
+    localStorageActivBtnBox ? Number(localStorageActivBtnBox) : 1
+  );
+  const [activBtnHorizontal, setactivBtnHorizontal] = useState(
+    localStorageactivBtnHorizontal ? Number(localStorageactivBtnHorizontal) : 0
+  );
 
   let renderNews = allNews;
 
@@ -29,6 +37,9 @@ function ContainerNewsList(props) {
   } else if (filter === 'Mos.ru') {
     renderNews = newsListMos;
   }
+
+  const lastNewsIndex = currentPage * newsPageCount;
+  const firstNewsIndex = lastNewsIndex - newsPageCount;
 
   const newDataNews = renderNews.filter((news) => {
     return search(news, newText);
@@ -41,9 +52,6 @@ function ContainerNewsList(props) {
       return renderNews.length;
     }
   };
-
-  const lastNewsIndex = currentPage * newsPageCount;
-  const firstNewsIndex = lastNewsIndex - newsPageCount;
 
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -74,26 +82,13 @@ function ContainerNewsList(props) {
   };
 
   useEffect(() => {
-    const localStorageActivBtnBox = localStorage.getItem('activBtnBox');
-    const localStorageactivBtnHorizontal =
-      localStorage.getItem('activBtnHorizontal');
-
     if (newNumber !== undefined) {
       paginate(newNumber);
     }
     if (filterParams !== undefined) {
       setFilter(filterParams);
     }
-
-    setActivBtnBox(
-      localStorageActivBtnBox ? Number(localStorageActivBtnBox) : 1
-    );
-    setactivBtnHorizontal(
-      localStorageactivBtnHorizontal
-        ? Number(localStorageactivBtnHorizontal)
-        : 0
-    );
-  }, [activBtnBox, activBtnHorizontal]);
+  }, []);
 
   return (
     <div className="containerNewsList">

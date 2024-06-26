@@ -2,7 +2,7 @@ import Link from 'next/link';
 import './Header.css';
 
 function Header(props) {
-  const { text, chageText, newText, filterParams } = props;
+  const { text, chageText, newText, filterParams} = props;
 
   let searchText = text;
   let filter = 'all';
