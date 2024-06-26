@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import setStyleBtnDisplay from '../utils/setStyleBtnDisplay';
 import './Pagination.css';
 
 function Pagination(props) {
@@ -42,7 +43,12 @@ function Pagination(props) {
         if (Number(currentPage) === 1 || Number(currentPage) === 2) {
           if (index + 1 < 5) {
             return (
-              <Link className="linkPage" href={hrefPage} key={number}>
+              <Link
+                className="linkPage"
+                href={hrefPage}
+                key={number}
+                style={setStyleBtnDisplay(number, currentPage)}
+              >
                 {number}
               </Link>
             );
@@ -50,7 +56,12 @@ function Pagination(props) {
             return (
               <span className="lastPage" key={number + 1}>
                 <h4>...</h4>
-                <Link className="linkPage" href={hrefPage} key={number}>
+                <Link
+                  className="linkPage"
+                  href={hrefPage}
+                  key={number}
+                  style={setStyleBtnDisplay(number, currentPage)}
+                >
                   {number}
                 </Link>
               </span>
@@ -70,7 +81,12 @@ function Pagination(props) {
             index + 1 === Number(currentPage) + 1
           ) {
             return (
-              <Link className="linkPage" href={hrefPage} key={number}>
+              <Link
+                className="linkPage"
+                href={hrefPage}
+                key={number}
+                style={setStyleBtnDisplay(number, currentPage)}
+              >
                 {number}
               </Link>
             );
@@ -78,7 +94,12 @@ function Pagination(props) {
             return (
               <span className="lastPage" key={number + 1}>
                 <h4>...</h4>
-                <Link className="linkPage" href={hrefPage} key={number}>
+                <Link
+                  className="linkPage"
+                  href={hrefPage}
+                  key={number}
+                  style={setStyleBtnDisplay(number, currentPage)}
+                >
                   {number}
                 </Link>
               </span>
@@ -93,7 +114,12 @@ function Pagination(props) {
           if (index + 1 === 1) {
             return (
               <span className="lastPage" key={number + 1}>
-                <Link className="linkPage" href={hrefPage} key={number}>
+                <Link
+                  className="linkPage"
+                  href={hrefPage}
+                  key={number}
+                  style={setStyleBtnDisplay(number, currentPage)}
+                >
                   {number}
                 </Link>
                 <h4>...</h4>
@@ -106,7 +132,12 @@ function Pagination(props) {
             index + 1 === Number(currentPage) + 1
           ) {
             return (
-              <Link className="linkPage" href={hrefPage} key={number}>
+              <Link
+                className="linkPage"
+                href={hrefPage}
+                key={number}
+                style={setStyleBtnDisplay(number, currentPage)}
+              >
                 {number}
               </Link>
             );
