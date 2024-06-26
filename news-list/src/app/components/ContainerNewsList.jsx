@@ -17,22 +17,6 @@ function ContainerNewsList(props) {
   const [currentPage, setCurrentPage] = useState(newNumber ? newNumber : 1);
   const [newsPageCount] = useState(4);
   const [filter, setFilter] = useState('all');
-
-  useEffect(() => {
-    const localStorageActivBtnBox = window.localStorage.getItem('activBtnBox');
-    const localStorageactivBtnHorizontal =
-      window.localStorage.getItem('activBtnHorizontal');
-
-    setActivBtnBox(
-      localStorageActivBtnBox ? Number(localStorageActivBtnBox) : 1
-    );
-    setactivBtnHorizontal(
-      localStorageactivBtnHorizontal
-        ? Number(localStorageactivBtnHorizontal)
-        : 0
-    );
-  }, []);
-
   const [activBtnBox, setActivBtnBox] = useState(1);
   const [activBtnHorizontal, setactivBtnHorizontal] = useState(0);
 
@@ -74,29 +58,42 @@ function ContainerNewsList(props) {
   };
 
   const clickBtnBox = () => {
-    window.localStorage.setItem('activBtnHorizontal', '0');
-    window.localStorage.setItem('activBtnBox', '1');
+    localStorage.setItem('activBtnHorizontal', '0');
+    localStorage.setItem('activBtnBox', '1');
 
     setactivBtnHorizontal(Number(localStorage.getItem('activBtnHorizontal')));
     setActivBtnBox(Number(localStorage.getItem('activBtnBox')));
   };
 
   const clickBtnHorizontal = () => {
-    window.localStorage.setItem('activBtnHorizontal', '1');
-    window.localStorage.setItem('activBtnBox', '0');
+    localStorage.setItem('activBtnHorizontal', '1');
+    localStorage.setItem('activBtnBox', '0');
 
     setactivBtnHorizontal(Number(localStorage.getItem('activBtnHorizontal')));
     setActivBtnBox(Number(localStorage.getItem('activBtnBox')));
   };
 
   useEffect(() => {
+    const localStorageActivBtnBox = localStorage.getItem('activBtnBox');
+    const localStorageactivBtnHorizontal =
+      localStorage.getItem('activBtnHorizontal');
+
     if (newNumber !== undefined) {
       paginate(newNumber);
     }
     if (filterParams !== undefined) {
       setFilter(filterParams);
     }
-  }, []);
+
+    setActivBtnBox(
+      localStorageActivBtnBox ? Number(localStorageActivBtnBox) : 1
+    );
+    setactivBtnHorizontal(
+      localStorageactivBtnHorizontal
+        ? Number(localStorageactivBtnHorizontal)
+        : 0
+    );
+  }, [activBtnBox, activBtnHorizontal]);
 
   return (
     <div className="containerNewsList">

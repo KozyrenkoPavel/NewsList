@@ -1,9 +1,20 @@
 import Link from 'next/link';
+import stylesCardNews from '../utils/stylesCardNews';
 import './News.css';
 
 function News(props) {
   const { title, link, img, date, content, activBtnHorizontal } = props;
   const dateParse = new Date(date);
+  let newContent = '';
+
+  if (!activBtnHorizontal) {
+    newContent = content.length > 110 ? content.slice(0, 110) + '...' : content;
+  }
+
+  if (activBtnHorizontal) {
+    newContent = content.length > 217 ? content.slice(0, 217) + '...' : content;
+  }
+
   let newDate =
     dateParse.getDate() +
     '.' +
@@ -49,72 +60,56 @@ function News(props) {
 
   const contentLink = link.includes('lenta.ru') ? 'lenta.ru' : 'mos.ru';
 
-  let style = {};
-  let styleCard = {};
-  let styleImg = {};
-  let styleTitle = {};
-
-  if (activBtnHorizontal) {
-    style = {
-      width: '1060px',
-      height: '189px',
-      display: 'flex',
-      justifyContent: 'space-between',
-    };
-    styleCard = {
-      width: '100%',
-    };
-    styleImg = { marginRight: '30px' };
-    styleTitle = {
-      width: '772px',
-      height: '44px',
-      fontWeight: '700',
-      fontSize: '18px',
-      lineHeight: '22px',
-    };
-  } else {
-    style = {
-      maxWidth: '520px',
-      height: '256px',
-      display: 'bloc',
-    };
-    styleCard = { width: '100%' };
-    styleTitle = {
-      width: '459px',
-      height: '66px',
-      lineHeight: '20px',
-    };
-  }
-
   return (
-    <div className="newsContainer" style={style}>
-      {activBtnHorizontal ? (
-        <img src={`${img}`} alt="img" style={styleImg} />
-      ) : (
-        false
-      )}
+    <div
+      className="newsContainer"
+      style={stylesCardNews(activBtnHorizontal).style}
+    >
+      <div
+        className="cardNews"
+        style={stylesCardNews(activBtnHorizontal).styleCard}
+      >
+        {activBtnHorizontal ? (
+          <Link href={`${link}`} rel="noreferrer" target="_blank">
+            <img
+              src={`${img}`}
+              alt="img"
+              style={stylesCardNews(activBtnHorizontal).styleImg}
+            />
+          </Link>
+        ) : (
+          false
+        )}
 
-      <div className="cardNews" style={styleCard}>
         <div className="card">
           <div className="news">
-            <h2 style={styleTitle}>{title}</h2>
+            <h2 style={stylesCardNews(activBtnHorizontal).styleTitle}>
+              {title}
+            </h2>
 
-            <div className="content">
-              <p>{content}</p>
+            <div
+              className="content"
+              style={stylesCardNews(activBtnHorizontal).styleContent}
+            >
+              <p>{newContent}</p>
             </div>
           </div>
 
-          <Link href={`${link}`} rel="noreferrer" target="_blank">
-            <p>Подробнее</p>
-          </Link>
+          {!activBtnHorizontal ? (
+            <Link href={`${link}`} rel="noreferrer" target="_blank">
+              <p>Подробнее</p>
+            </Link>
+          ) : (
+            false
+          )}
         </div>
+      </div>
 
-        <div className="footerCard">
-          <Link href={hrefLink} rel="noreferrer" target="_blank">
-            {contentLink}
-          </Link>
-          <p>{newDate}</p>
-        </div>
+      <div className="footerCard">
+        <Link href={hrefLink} rel="noreferrer" target="_blank">
+          {contentLink}
+        </Link>
+        <p>{newDate}</p>
       </div>
     </div>
   );
