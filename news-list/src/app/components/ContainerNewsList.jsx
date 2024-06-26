@@ -82,9 +82,6 @@ function ContainerNewsList(props) {
   };
 
   useEffect(() => {
-    if (newNumber !== undefined) {
-      paginate(newNumber);
-    }
     if (filterParams !== undefined) {
       setFilter(filterParams);
     }
