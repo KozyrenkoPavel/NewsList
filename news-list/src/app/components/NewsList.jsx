@@ -10,7 +10,7 @@ function NewsList(props) {
     newText,
     firstNewsIndex,
     lastNewsIndex,
-    activBtnHorizontal,
+    isActiveBtn,
   } = props;
 
   let newsContent = content;
@@ -45,7 +45,7 @@ function NewsList(props) {
               date={news.item.pubDate}
               img={news.item.enclosure.url}
               content={newsContent}
-              activBtnHorizontal={activBtnHorizontal}
+              isActiveBtn={isActiveBtn}
             />
           );
         })}

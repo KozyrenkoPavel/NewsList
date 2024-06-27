@@ -6,19 +6,20 @@ import Pagination from './Pagination';
 import { useState, useEffect } from 'react';
 import search from '../utils/search';
 import ResourceFilters from './ResourceFilters';
-import HorizontalBtn from './HorizontalBtn';
-import BoxBtn from './BoxBtn';
+import BtnDisplay from './BtnDisplay';
 import './ContainerNewsList.css';
 
 function ContainerNewsList(props) {
   const { newsList, newsListMos, allNews, newText, newNumber, filterParams } =
     props;
   const [text, setText] = useState('');
-  const [currentPage, setCurrentPage] = useState(newNumber ? newNumber : 1);
+  const [currentPage] = useState(newNumber ? newNumber : 1);
   const [newsPageCount] = useState(4);
   const [filter, setFilter] = useState('all');
-  const [activBtnBox, setActivBtnBox] = useState(0);
-  const [activBtnHorizontal, setactivBtnHorizontal] = useState(0);
+  const [isActiveBtn, setIsActiveBtn] = useState(1);
+  const [isPaintBtn, setPaintBtn] = useState(0);
+  const [isPaintBtnBox, setPaintBtnBox] = useState(1);
+  const [loading, setLoading] = useState(true);
 
   let renderNews = allNews;
 
@@ -45,10 +46,6 @@ function ContainerNewsList(props) {
     }
   };
 
-  const paginate = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
-
   const chageText = (text) => {
     setText(text);
   };
@@ -58,28 +55,32 @@ function ContainerNewsList(props) {
   };
 
   const clickBtnBox = () => {
-    localStorage.setItem('activBtnHorizontal', '0');
-    localStorage.setItem('activBtnBox', '1');
-
-    setactivBtnHorizontal(Number(localStorage.getItem('activBtnHorizontal')));
-    setActivBtnBox(Number(localStorage.getItem('activBtnBox')));
+    localStorage.setItem('isActiveBtn', '1');
+    setIsActiveBtn(1);
+    setPaintBtn(0);
+    setPaintBtnBox(1);
   };
 
   const clickBtnHorizontal = () => {
-    localStorage.setItem('activBtnHorizontal', '1');
-    localStorage.setItem('activBtnBox', '0');
-
-    setactivBtnHorizontal(Number(localStorage.getItem('activBtnHorizontal')));
-    setActivBtnBox(Number(localStorage.getItem('activBtnBox')));
+    localStorage.setItem('isActiveBtn', '0');
+    setIsActiveBtn(0);
+    setPaintBtn(1);
+    setPaintBtnBox(0);
   };
 
   useEffect(() => {
-    const localStorageActivBtnBox = localStorage.getItem('activBtnBox');
+    setLoading(false);
 
-    if (localStorageActivBtnBox && Number(localStorageActivBtnBox)) {
-      setActivBtnBox(1);
+    const localStorageIsActiveBtn = localStorage.getItem('isActiveBtn');
+
+    if (localStorageIsActiveBtn && Number(localStorageIsActiveBtn)) {
+      setIsActiveBtn(1);
+      setPaintBtn(0);
+      setPaintBtnBox(1);
     } else {
-      setactivBtnHorizontal(1);
+      setIsActiveBtn(0);
+      setPaintBtn(1);
+      setPaintBtnBox(0);
     }
 
     if (filterParams !== undefined) {
@@ -87,7 +88,7 @@ function ContainerNewsList(props) {
     }
   }, []);
 
-  if (!activBtnHorizontal && !activBtnBox) {
+  if (loading) {
     return <h1>Loading...</h1>;
   }
 
@@ -104,11 +105,18 @@ function ContainerNewsList(props) {
 
       <div className="display">
         <div className="displayBtn">
-          <HorizontalBtn
-            clickBtnHorizontal={clickBtnHorizontal}
-            activBtnHorizontal={activBtnHorizontal}
+          <BtnDisplay
+            clickBtn={clickBtnHorizontal}
+            isBox={false}
+            isPaint={isPaintBtn}
+            clas="strip"
           />
-          <BoxBtn clickBtnBox={clickBtnBox} activBtnBox={activBtnBox} />
+          <BtnDisplay
+            clickBtn={clickBtnBox}
+            isBox={true}
+            isPaint={isPaintBtnBox}
+            clas="box"
+          />
         </div>
       </div>
 
@@ -139,7 +147,7 @@ function ContainerNewsList(props) {
         firstNewsIndex={firstNewsIndex}
         lastNewsIndex={lastNewsIndex}
         newDataNews={newDataNews}
-        activBtnHorizontal={activBtnHorizontal}
+        isActiveBtn={isActiveBtn}
       />
       <Pagination
         newsPageCount={newsPageCount}

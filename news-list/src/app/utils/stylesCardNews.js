@@ -5,7 +5,7 @@ const stylesCardNews = (actveBtn) => {
   let styleContent = {};
   let styleCard = {};
 
-  if (actveBtn) {
+  if (!actveBtn) {
     style = {
       width: '1060px',
       height: '189px',

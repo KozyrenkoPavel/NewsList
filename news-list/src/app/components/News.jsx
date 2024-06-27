@@ -3,15 +3,15 @@ import stylesCardNews from '../utils/stylesCardNews';
 import './News.css';
 
 function News(props) {
-  const { title, link, img, date, content, activBtnHorizontal } = props;
+  const { title, link, img, date, content, isActiveBtn } = props;
   const dateParse = new Date(date);
   let newContent = '';
 
-  if (!activBtnHorizontal) {
+  if (isActiveBtn) {
     newContent = content.length > 110 ? content.slice(0, 110) + '...' : content;
   }
 
-  if (activBtnHorizontal) {
+  if (!isActiveBtn) {
     newContent = content.length > 217 ? content.slice(0, 217) + '...' : content;
   }
 
@@ -61,20 +61,14 @@ function News(props) {
   const contentLink = link.includes('lenta.ru') ? 'lenta.ru' : 'mos.ru';
 
   return (
-    <div
-      className="newsContainer"
-      style={stylesCardNews(activBtnHorizontal).style}
-    >
-      <div
-        className="cardNews"
-        style={stylesCardNews(activBtnHorizontal).styleCard}
-      >
-        {activBtnHorizontal ? (
+    <div className="newsContainer" style={stylesCardNews(isActiveBtn).style}>
+      <div className="cardNews" style={stylesCardNews(isActiveBtn).styleCard}>
+        {!isActiveBtn ? (
           <Link href={`${link}`} rel="noreferrer" target="_blank">
             <img
               src={`${img}`}
               alt="img"
-              style={stylesCardNews(activBtnHorizontal).styleImg}
+              style={stylesCardNews(isActiveBtn).styleImg}
             />
           </Link>
         ) : (
@@ -83,19 +77,17 @@ function News(props) {
 
         <div className="card">
           <div className="news">
-            <h2 style={stylesCardNews(activBtnHorizontal).styleTitle}>
-              {title}
-            </h2>
+            <h2 style={stylesCardNews(isActiveBtn).styleTitle}>{title}</h2>
 
             <div
               className="content"
-              style={stylesCardNews(activBtnHorizontal).styleContent}
+              style={stylesCardNews(isActiveBtn).styleContent}
             >
               <p>{newContent}</p>
             </div>
           </div>
 
-          {!activBtnHorizontal ? (
+          {isActiveBtn ? (
             <Link href={`${link}`} rel="noreferrer" target="_blank">
               <p>Подробнее</p>
             </Link>

@@ -11,7 +11,13 @@
 .box {
   width: 8px;
   height: 8px;
-  background-color: #0029ff;
+  background-color: #c4c4c4;
+}
+
+.strip {
+  width: 18px;
+  height: 8px;
+  background-color: #c4c4c4;
 }
 
 .boxBtn:hover div {
