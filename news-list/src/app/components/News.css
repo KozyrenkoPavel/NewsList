@@ -2,9 +2,9 @@
   border-radius: 3px;
   background-color: #ffffff;
   border: 1px solid #dcdcdc;
-  padding: 30px 30px 16px 30px;
-  margin: 0 auto;
+  padding: 30px;
   margin-bottom: 20px;
+  position: relative;
 }
 
 .newsContainer:hover {
@@ -32,13 +32,11 @@
   line-height: 20px;
   color: #0029ff;
 }
-.newsContainer a p {
-  margin-bottom: 19px;
-}
 
 .newsContainer h2 {
   font-weight: 700;
   font-size: 18px;
+  line-height: 22px;
   color: #0029ff;
 }
 
@@ -47,10 +45,15 @@
   height: 20px;
   display: flex;
   justify-content: space-between;
+  position: absolute;
+  bottom: 4px;
+  left: 0;
+  padding: 30px;
   color: #dcdcdc;
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
+  text-align: center;
 }
 
 .footerCard a {

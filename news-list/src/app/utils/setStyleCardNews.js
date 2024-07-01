@@ -1,12 +1,13 @@
-const stylesCardNews = (actveBtn) => {
-  let style = {};
+const setStyleCardNews = (actveBtn) => {
+  let styleNews = {};
   let styleImg = {};
   let styleTitle = {};
   let styleContent = {};
   let styleCard = {};
+  let styleMoreDetails = { padding: '30px' };
 
   if (!actveBtn) {
-    style = {
+    styleNews = {
       width: '1060px',
       height: '189px',
     };
@@ -26,7 +27,7 @@ const stylesCardNews = (actveBtn) => {
       marginBottom: '31px',
     };
   } else {
-    style = {
+    styleNews = {
       maxWidth: '520px',
       height: '256px',
     };
@@ -46,12 +47,13 @@ const stylesCardNews = (actveBtn) => {
   }
 
   return {
-    style,
+    styleNews,
     styleImg,
     styleTitle,
     styleContent,
     styleCard,
+    styleMoreDetails,
   };
 };
 
-export default stylesCardNews;
+export default setStyleCardNews;

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import setStyleBtnDisplay from '../utils/setStyleBtnDisplay';
+import setStyleBtnPagination from '../utils/setStyleBtnPagination';
 import './Pagination.css';
 
 function Pagination(props) {
@@ -47,7 +47,7 @@ function Pagination(props) {
                 className="linkPage"
                 href={hrefPage}
                 key={number}
-                style={setStyleBtnDisplay(number, currentPage)}
+                style={setStyleBtnPagination(number, currentPage)}
               >
                 {number}
               </Link>
@@ -60,7 +60,7 @@ function Pagination(props) {
                   className="linkPage"
                   href={hrefPage}
                   key={number}
-                  style={setStyleBtnDisplay(number, currentPage)}
+                  style={setStyleBtnPagination(number, currentPage)}
                 >
                   {number}
                 </Link>
@@ -85,7 +85,7 @@ function Pagination(props) {
                 className="linkPage"
                 href={hrefPage}
                 key={number}
-                style={setStyleBtnDisplay(number, currentPage)}
+                style={setStyleBtnPagination(number, currentPage)}
               >
                 {number}
               </Link>
@@ -98,7 +98,7 @@ function Pagination(props) {
                   className="linkPage"
                   href={hrefPage}
                   key={number}
-                  style={setStyleBtnDisplay(number, currentPage)}
+                  style={setStyleBtnPagination(number, currentPage)}
                 >
                   {number}
                 </Link>
@@ -118,7 +118,7 @@ function Pagination(props) {
                   className="linkPage"
                   href={hrefPage}
                   key={number}
-                  style={setStyleBtnDisplay(number, currentPage)}
+                  style={setStyleBtnPagination(number, currentPage)}
                 >
                   {number}
                 </Link>
@@ -136,7 +136,7 @@ function Pagination(props) {
                 className="linkPage"
                 href={hrefPage}
                 key={number}
-                style={setStyleBtnDisplay(number, currentPage)}
+                style={setStyleBtnPagination(number, currentPage)}
               >
                 {number}
               </Link>

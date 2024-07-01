@@ -32,3 +32,9 @@ hr {
   margin-bottom: 25px;
   border: none;
 }
+
+@media (max-width: 1130px) {
+  .container {
+    padding: 0px;
+  }
+}

@@ -1,8 +1,9 @@
 import Link from 'next/link';
+import setStyleTabletOrMobile from '../utils/setStyleTabletOrMobile';
 import './Header.css';
 
 function Header(props) {
-  const { text, chageText, newText, filterParams} = props;
+  const { text, chageText, newText, filterParams, isTabletOrMobile } = props;
 
   let searchText = text;
   let filter = 'all';
@@ -32,12 +33,22 @@ function Header(props) {
   }
 
   return (
-    <div className="header">
-      <div className="title">
-        <h1>Список новостей</h1>
+    <div
+      className="header"
+      style={isTabletOrMobile ? setStyleTabletOrMobile().styleHeader : {}}
+    >
+      <div
+        className="title"
+        style={isTabletOrMobile ? setStyleTabletOrMobile().styleTitle : {}}
+      >
+        <h1
+          style={isTabletOrMobile ? setStyleTabletOrMobile().styleTitleH1 : {}}
+        >
+          Список новостей
+        </h1>
         <button className="imageButton" onClick={clearFilter}></button>
       </div>
-      <div className="search">
+      <div className="search" style={isTabletOrMobile ? setStyleTabletOrMobile().styleInput : {}}>
         <input
           type="text"
           value={text}

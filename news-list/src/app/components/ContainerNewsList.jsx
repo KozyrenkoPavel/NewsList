@@ -4,7 +4,9 @@ import Header from './Header';
 import NewsList from './NewsList';
 import Pagination from './Pagination';
 import { useState, useEffect } from 'react';
+import { useMediaQuery } from 'react-responsive';
 import search from '../utils/search';
+import setStyleTabletOrMobile from '../utils/setStyleTabletOrMobile';
 import ResourceFilters from './ResourceFilters';
 import BtnDisplay from './BtnDisplay';
 import './ContainerNewsList.css';
@@ -20,6 +22,12 @@ function ContainerNewsList(props) {
   const [isPaintBtn, setPaintBtn] = useState(0);
   const [isPaintBtnBox, setPaintBtnBox] = useState(1);
   const [loading, setLoading] = useState(true);
+  const isLaptop = useMediaQuery({
+    query: '(max-width: 1400px)',
+  });
+  const isTabletOrMobile = useMediaQuery({
+    query: '(max-width: 1130px)',
+  });
 
   let renderNews = allNews;
 
@@ -93,17 +101,24 @@ function ContainerNewsList(props) {
   }
 
   return (
-    <div className="containerNewsList">
+    <div
+      className="containerNewsList"
+      style={isTabletOrMobile ? setStyleTabletOrMobile().styleContainer : {}}
+    >
       <Header
         text={text}
         chageText={chageText}
         newText={newText}
         filterParams={filterParams}
+        isTabletOrMobile={isTabletOrMobile}
       />
 
       <hr />
 
-      <div className="display">
+      <div
+        className="display"
+        style={isTabletOrMobile ? setStyleTabletOrMobile().styleDisplay : {}}
+      >
         <div className="displayBtn">
           <BtnDisplay
             clickBtn={clickBtnHorizontal}
@@ -148,6 +163,7 @@ function ContainerNewsList(props) {
         lastNewsIndex={lastNewsIndex}
         newDataNews={newDataNews}
         isActiveBtn={isActiveBtn}
+        isLaptop={isLaptop}
       />
       <Pagination
         newsPageCount={newsPageCount}

@@ -11,6 +11,7 @@ function NewsList(props) {
     firstNewsIndex,
     lastNewsIndex,
     isActiveBtn,
+    isLaptop,
   } = props;
 
   let newsContent = content;
@@ -40,12 +41,13 @@ function NewsList(props) {
           return (
             <News
               key={key}
-              title={news.item.title}
-              link={news.item.link}
-              date={news.item.pubDate}
-              img={news.item.enclosure.url}
+              title={news.item?.title}
+              link={news.item?.link}
+              date={news.item?.pubDate}
+              img={news.item?.enclosure?.url}
               content={newsContent}
               isActiveBtn={isActiveBtn}
+              isLaptop={isLaptop}
             />
           );
         })}
